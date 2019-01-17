@@ -50,7 +50,7 @@ app.get('/oauth', function (req, res) {
 const today = strftime('%Y-%m-%d', (new Date()));
 
 function parseData(callback) {
-  request(`https://api.bamboohr.com/api/gateway.php/moneysmart/v1/time_off/whos_out?end=${today}&start=${today}`, {
+  request(`${process.env.API_END_POINT}/time_off/whos_out?end=${today}&start=${today}`, {
     auth: {
       user: process.env.BAMBOOHR_USERNAME,
       pass: process.env.BAMBOOHR_PASSWORD,
