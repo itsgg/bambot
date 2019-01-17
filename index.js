@@ -47,8 +47,7 @@ app.get('/oauth', function (req, res) {
   });
 });
 
-// const today = strftime('%Y-%m-%d', (new Date()));
-const today = '2019-01-15';
+const today = strftime('%Y-%m-%d', (new Date()));
 
 function parseData(callback) {
   request(`https://api.bamboohr.com/api/gateway.php/moneysmart/v1/time_off/whos_out?end=${today}&start=${today}`, {
@@ -110,7 +109,7 @@ function holidays(callback) {
   });
 }
 
-var j = schedule.scheduleJob('* * * * *', () => {
+var j = schedule.scheduleJob('0 0 * * *', () => {
   whosOut((text) => {
     request({
       uri: process.env.SLACK_INCOMING_WEBHOOK,
