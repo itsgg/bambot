@@ -50,7 +50,7 @@ app.get('/oauth', function (req, res) {
 const today = strftime('%Y-%m-%d', (new Date()));
 
 function parseData(callback) {
-  request(`${process.env.API_END_POINT}/time_off/whos_out?end=${today}&start=${today}`, {
+  request(`${process.env.API_END_POINT}time_off/whos_out?end=${today}&start=${today}`, {
     auth: {
       user: process.env.BAMBOOHR_USERNAME,
       pass: process.env.BAMBOOHR_PASSWORD,
@@ -109,7 +109,7 @@ function holidays(callback) {
   });
 }
 
-var j = schedule.scheduleJob('0 0 * * *', () => {
+var j = schedule.scheduleJob(process.env.CRON_PATTERN, () => {
   whosOut((text) => {
     request({
       uri: process.env.SLACK_INCOMING_WEBHOOK,
