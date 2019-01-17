@@ -83,7 +83,7 @@ function whosOut(callback) {
       }).join(', ')}`;
     }
     callback(text);
-  })
+  });
 }
 
 function holidays(callback) {
@@ -106,6 +106,7 @@ function holidays(callback) {
                                             return holiday.name;
                                           }).join(', ')}`
     }
+    callback(text);
   });
 }
 
